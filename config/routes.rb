@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :events
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
       resources :gifts
     end
   end
-end
+
+  post '/login', to: "sessions#create"
 
 end
