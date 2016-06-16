@@ -1,0 +1,946 @@
+  [1m[35m (29.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1645620849998709255);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20160615212716)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "username" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[35mSQL (3.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160615212716"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEvents (20160615212807)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.0ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "date" timestamp, "title" character varying, "description" character varying, "user_id" integer, CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events"  ("user_id")[0m
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160615212807"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRecipients (20160615212940)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "recipients" ("id" serial primary key, "name" character varying, "relationship" character varying, "user_id" integer, CONSTRAINT "fk_rails_037e44a0ef"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX  "index_recipients_on_user_id" ON "recipients"  ("user_id")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160615212940"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGifts (20160615213022)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" serial primary key, "name" character varying, "url" character varying, "price" decimal, "priority" integer, "event_id" integer, "recipient_id" integer, CONSTRAINT "fk_rails_5f98f983da"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_5eee704062"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_event_id" ON "gifts"  ("event_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_recipient_id" ON "gifts"  ("recipient_id")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160615213022"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEventRecipients (20160615213055)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "event_recipients" ("id" serial primary key, "event_id" integer, "recipient_id" integer, CONSTRAINT "fk_rails_7c39244976"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+, CONSTRAINT "fk_rails_e0d2452628"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_event_id" ON "event_recipients"  ("event_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_recipient_id" ON "event_recipients"  ("recipient_id")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160615213055"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-06-15 21:31:13 UTC], ["updated_at", 2016-06-15 21:31:13 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1645620849998709255)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'event_recipients'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'events'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'gifts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'recipients'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (2.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Charlie Brown"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (4.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "blanket"], ["url", "http://amzn.to/1OqTnmU"], ["price", #<BigDecimal:7fb3a2d66e58,'0.2499E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "robot"], ["url", "http://amzn.to/1OqTor7"], ["price", #<BigDecimal:7fb3a58b9060,'0.5099E2',18(36)>], ["priority", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bible"], ["url", "http://amzn.to/24Rw2wL"], ["price", #<BigDecimal:7fb3a2d47170,'0.1169E2',18(36)>], ["priority", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "toy piano"], ["url", "http://amzn.to/24Rwn2x"], ["price", #<BigDecimal:7fb3a58a1a28,'0.1495E2',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "coal"], ["url", "http://amzn.to/21ncI9W"], ["price", #<BigDecimal:7fb3a20984b0,'0.1299E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "crab"], ["url", "http://amzn.to/1Q5T15M"], ["price", #<BigDecimal:7fb3a2092b78,'0.999E1',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Charlie Brown"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "blanket"], ["url", "http://amzn.to/1OqTnmU"], ["price", #<BigDecimal:7faec5357390,'0.2499E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "robot"], ["url", "http://amzn.to/1OqTor7"], ["price", #<BigDecimal:7faec534ca08,'0.5099E2',18(36)>], ["priority", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bible"], ["url", "http://amzn.to/24Rw2wL"], ["price", #<BigDecimal:7faec53464f0,'0.1169E2',18(36)>], ["priority", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "toy piano"], ["url", "http://amzn.to/24Rwn2x"], ["price", #<BigDecimal:7faec5335038,'0.1495E2',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "coal"], ["url", "http://amzn.to/21ncI9W"], ["price", #<BigDecimal:7faec5327d20,'0.1299E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "crab"], ["url", "http://amzn.to/1Q5T15M"], ["price", #<BigDecimal:7faec531cdf8,'0.999E1',18(36)>], ["priority", 4]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "rolling pin"], ["url", "http://amzn.to/1YsF43m"], ["price", #<BigDecimal:7faec530e848,'0.727E1',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Freud book"], ["url", "http://amzn.to/1tx1Hsi"], ["price", #<BigDecimal:7faec52ffd70,'0.784E1',18(36)>], ["priority", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Charlie Brown"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "blanket"], ["url", "http://amzn.to/1OqTnmU"], ["price", #<BigDecimal:7fc41ae90710,'0.2499E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "robot"], ["url", "http://amzn.to/1OqTor7"], ["price", #<BigDecimal:7fc419f814e0,'0.5099E2',18(36)>], ["priority", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bible"], ["url", "http://amzn.to/24Rw2wL"], ["price", #<BigDecimal:7fc41ae70988,'0.1169E2',18(36)>], ["priority", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "toy piano"], ["url", "http://amzn.to/24Rwn2x"], ["price", #<BigDecimal:7fc41ae53ec8,'0.1495E2',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "coal"], ["url", "http://amzn.to/21ncI9W"], ["price", #<BigDecimal:7fc41ae41408,'0.1299E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "crab"], ["url", "http://amzn.to/1Q5T15M"], ["price", #<BigDecimal:7fc41ae2bec8,'0.999E1',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "rolling pin"], ["url", "http://amzn.to/1YsF43m"], ["price", #<BigDecimal:7fc419f61e38,'0.727E1',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Freud book"], ["url", "http://amzn.to/1tx1Hsi"], ["price", #<BigDecimal:7fc41ae18aa8,'0.784E1',18(36)>], ["priority", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mRecipient Load (1.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients"[0m
+  [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (135.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "gift_assist_api_development"[0m
+  [1m[35m (126.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "gift_assist_api_test"[0m
+  [1m[35m (353.1ms)[0m  [1m[35mCREATE DATABASE "gift_assist_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (245.1ms)[0m  [1m[35mCREATE DATABASE "gift_assist_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "event_recipients" ("id" serial primary key, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_event_id" ON "event_recipients" USING btree ("event_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_recipient_id" ON "event_recipients" USING btree ("recipient_id")[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "date" timestamp, "title" character varying, "description" character varying, "user_id" integer)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events" USING btree ("user_id")[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" serial primary key, "name" character varying, "url" character varying, "price" decimal, "priority" integer, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_event_id" ON "gifts" USING btree ("event_id")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_recipient_id" ON "gifts" USING btree ("recipient_id")[0m
+  [1m[35m (9.8ms)[0m  [1m[35mCREATE TABLE "recipients" ("id" serial primary key, "name" character varying, "relationship" character varying, "user_id" integer)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_recipients_on_user_id" ON "recipients" USING btree ("user_id")[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "username" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[35m (8.7ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_7c39244976"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_e0d2452628"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (4.3ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5f98f983da"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5eee704062"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "recipients" ADD CONSTRAINT "fk_rails_037e44a0ef"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20160615213055')[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20160615212716'), ('20160615212807'), ('20160615212940'), ('20160615213022');
+
+[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-06-15 22:32:45 UTC], ["updated_at", 2016-06-15 22:32:45 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "event_recipients" ("id" serial primary key, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_event_id" ON "event_recipients" USING btree ("event_id")[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_recipient_id" ON "event_recipients" USING btree ("recipient_id")[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "date" timestamp, "title" character varying, "description" character varying, "user_id" integer)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events" USING btree ("user_id")[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" serial primary key, "name" character varying, "url" character varying, "price" decimal, "priority" integer, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_event_id" ON "gifts" USING btree ("event_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_recipient_id" ON "gifts" USING btree ("recipient_id")[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "recipients" ("id" serial primary key, "name" character varying, "relationship" character varying, "user_id" integer)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  "index_recipients_on_user_id" ON "recipients" USING btree ("user_id")[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "username" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_7c39244976"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (4.3ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_e0d2452628"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5f98f983da"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5eee704062"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "recipients" ADD CONSTRAINT "fk_rails_037e44a0ef"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20160615213055')[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20160615212716'), ('20160615212807'), ('20160615212940'), ('20160615213022');
+
+[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-06-15 22:32:45 UTC], ["updated_at", 2016-06-15 22:32:45 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "charliebrown"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "charliebrown"], ["email", "charliebrown@peanuts.com"], ["password_digest", "$2a$10$gfuM0IaJDNyXx0yMqCuO..IuKQZimyk97GrtHzeObLvdkaQhPtmKO"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-12-25 00:00:00 UTC], ["title", "Christmas"], ["description", "white, sometimes"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-09-19 00:00:00 UTC], ["title", "Linus' Birthday"], ["description", "big day for Linus"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-06-24 00:00:00 UTC], ["title", "Lucy's Birthday"], ["description", "big day for Lucy"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "recipients" ("name", "relationship") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Lucy"], ["relationship", "frenemy"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "recipients" ("name", "relationship") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Linus"], ["relationship", "friend"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "blanket"], ["url", "http://amzn.to/1OqTnmU"], ["price", #<BigDecimal:7fb161fdc3b0,'0.2499E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "robot"], ["url", "http://amzn.to/1OqTor7"], ["price", #<BigDecimal:7fb161ff2958,'0.5099E2',18(36)>], ["priority", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bible"], ["url", "http://amzn.to/24Rw2wL"], ["price", #<BigDecimal:7fb16262c210,'0.1169E2',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "toy piano"], ["url", "http://amzn.to/24Rwn2x"], ["price", #<BigDecimal:7fb16583b238,'0.1495E2',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "coal"], ["url", "http://amzn.to/21ncI9W"], ["price", #<BigDecimal:7fb165830ec8,'0.1299E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "crab"], ["url", "http://amzn.to/1Q5T15M"], ["price", #<BigDecimal:7fb165858680,'0.999E1',18(36)>], ["priority", 4]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "rolling pin"], ["url", "http://amzn.to/1YsF43m"], ["price", #<BigDecimal:7fb165879ab0,'0.727E1',18(36)>], ["priority", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Freud book"], ["url", "http://amzn.to/1tx1Hsi"], ["price", #<BigDecimal:7fb1630b6528,'0.784E1',18(36)>], ["priority", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "recipients" SET "user_id" = $1 WHERE "recipients"."id" = $2[0m  [["user_id", 1], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "recipients" SET "user_id" = $1 WHERE "recipients"."id" = $2[0m  [["user_id", 1], ["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 2], ["recipient_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 1], ["recipient_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 3], ["recipient_id", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 1], ["recipient_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "charliebrown"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "blanket"], ["url", "http://amzn.to/1OqTnmU"], ["price", #<BigDecimal:7fe604b7a510,'0.2499E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "robot"], ["url", "http://amzn.to/1OqTor7"], ["price", #<BigDecimal:7fe604b80c08,'0.5099E2',18(36)>], ["priority", 5]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bible"], ["url", "http://amzn.to/24Rw2wL"], ["price", #<BigDecimal:7fe604b882a0,'0.1169E2',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "toy piano"], ["url", "http://amzn.to/24Rwn2x"], ["price", #<BigDecimal:7fe60503bd88,'0.1495E2',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "coal"], ["url", "http://amzn.to/21ncI9W"], ["price", #<BigDecimal:7fe605043538,'0.1299E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "crab"], ["url", "http://amzn.to/1Q5T15M"], ["price", #<BigDecimal:7fe605042b10,'0.999E1',18(36)>], ["priority", 4]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "rolling pin"], ["url", "http://amzn.to/1YsF43m"], ["price", #<BigDecimal:7fe605039cb8,'0.727E1',18(36)>], ["priority", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Freud book"], ["url", "http://amzn.to/1tx1Hsi"], ["price", #<BigDecimal:7fe605030938,'0.784E1',18(36)>], ["priority", 2]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mRecipient Load (1.0ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients"[0m
+  [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients"[0m
+  [1m[36mRecipient Load (0.4ms)[0m  [1m[34mSELECT  "recipients".* FROM "recipients" ORDER BY "recipients"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[36mRecipient Load (0.3ms)[0m  [1m[34mSELECT  "recipients".* FROM "recipients" ORDER BY "recipients"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[36mRecipient Load (0.4ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.3ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (125.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "gift_assist_api_development"[0m
+  [1m[35m (128.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "gift_assist_api_test"[0m
+  [1m[35m (346.2ms)[0m  [1m[35mCREATE DATABASE "gift_assist_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (253.8ms)[0m  [1m[35mCREATE DATABASE "gift_assist_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "event_recipients" ("id" serial primary key, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_event_id" ON "event_recipients" USING btree ("event_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_recipient_id" ON "event_recipients" USING btree ("recipient_id")[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "date" timestamp, "title" character varying, "description" character varying, "user_id" integer)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events" USING btree ("user_id")[0m
+  [1m[35m (13.0ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" serial primary key, "name" character varying, "url" character varying, "price" decimal, "priority" integer, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_event_id" ON "gifts" USING btree ("event_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_recipient_id" ON "gifts" USING btree ("recipient_id")[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "recipients" ("id" serial primary key, "name" character varying, "relationship" character varying, "user_id" integer)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_recipients_on_user_id" ON "recipients" USING btree ("user_id")[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "username" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[35m (7.5ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_7c39244976"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.9ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_e0d2452628"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5f98f983da"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5eee704062"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (3.5ms)[0m  [1m[35mALTER TABLE "recipients" ADD CONSTRAINT "fk_rails_037e44a0ef"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20160615213055')[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20160615212716'), ('20160615212807'), ('20160615212940'), ('20160615213022');
+
+[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-06-15 22:43:23 UTC], ["updated_at", 2016-06-15 22:43:23 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE "event_recipients" ("id" serial primary key, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_event_id" ON "event_recipients" USING btree ("event_id")[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_recipient_id" ON "event_recipients" USING btree ("recipient_id")[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "date" timestamp, "title" character varying, "description" character varying, "user_id" integer)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events" USING btree ("user_id")[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" serial primary key, "name" character varying, "url" character varying, "price" decimal, "priority" integer, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_event_id" ON "gifts" USING btree ("event_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_recipient_id" ON "gifts" USING btree ("recipient_id")[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE TABLE "recipients" ("id" serial primary key, "name" character varying, "relationship" character varying, "user_id" integer)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_recipients_on_user_id" ON "recipients" USING btree ("user_id")[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "username" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_7c39244976"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_e0d2452628"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (4.0ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5f98f983da"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5eee704062"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "recipients" ADD CONSTRAINT "fk_rails_037e44a0ef"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20160615213055')[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20160615212716'), ('20160615212807'), ('20160615212940'), ('20160615213022');
+
+[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-06-15 22:43:23 UTC], ["updated_at", 2016-06-15 22:43:23 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "charliebrown"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "charliebrown"], ["email", "charliebrown@peanuts.com"], ["password_digest", "$2a$10$Le3WT3DKfgTW1G1rYfxr0eKeo1Ru9c6MTaU6ovbEx7gGGWoILMS4i"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-12-25 00:00:00 UTC], ["title", "Christmas"], ["description", "white, sometimes"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-09-19 00:00:00 UTC], ["title", "Linus' Birthday"], ["description", "big day for Linus"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-06-24 00:00:00 UTC], ["title", "Lucy's Birthday"], ["description", "big day for Lucy"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "recipients" ("name", "relationship") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Linus"], ["relationship", "friend"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "recipients" ("name", "relationship") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Lucy"], ["relationship", "frenemy"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "blanket"], ["url", "http://amzn.to/1OqTnmU"], ["price", #<BigDecimal:7fbda1791b00,'0.2499E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "robot"], ["url", "http://amzn.to/1OqTor7"], ["price", #<BigDecimal:7fbda17c01a8,'0.5099E2',18(36)>], ["priority", 5]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bible"], ["url", "http://amzn.to/24Rw2wL"], ["price", #<BigDecimal:7fbda17e2f78,'0.1169E2',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "toy piano"], ["url", "http://amzn.to/24Rwn2x"], ["price", #<BigDecimal:7fbda17d1e80,'0.1495E2',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "crab"], ["url", "http://amzn.to/1Q5T15M"], ["price", #<BigDecimal:7fbda5008c90,'0.999E1',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "rolling pin"], ["url", "http://amzn.to/1YsF43m"], ["price", #<BigDecimal:7fbda1dab978,'0.727E1',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "coal"], ["url", "http://amzn.to/21ncI9W"], ["price", #<BigDecimal:7fbda501a5f8,'0.1299E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Freud book"], ["url", "http://amzn.to/1tx1Hsi"], ["price", #<BigDecimal:7fbda1dc9400,'0.784E1',18(36)>], ["priority", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 3]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "recipients" SET "user_id" = $1 WHERE "recipients"."id" = $2[0m  [["user_id", 1], ["id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "recipients" SET "user_id" = $1 WHERE "recipients"."id" = $2[0m  [["user_id", 1], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 2], ["recipient_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 1], ["recipient_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 3], ["recipient_id", 2]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 1], ["recipient_id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mRecipient Load (1.2ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients"[0m
+  [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" = $1[0m  [["event_id", 1]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (129.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "gift_assist_api_development"[0m
+  [1m[35m (120.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "gift_assist_api_test"[0m
+  [1m[35m (371.7ms)[0m  [1m[35mCREATE DATABASE "gift_assist_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (266.0ms)[0m  [1m[35mCREATE DATABASE "gift_assist_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "event_recipients" ("id" serial primary key, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_event_id" ON "event_recipients" USING btree ("event_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_recipient_id" ON "event_recipients" USING btree ("recipient_id")[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "date" timestamp, "title" character varying, "description" character varying, "user_id" integer)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events" USING btree ("user_id")[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" serial primary key, "name" character varying, "url" character varying, "price" decimal, "priority" integer, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_event_id" ON "gifts" USING btree ("event_id")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_recipient_id" ON "gifts" USING btree ("recipient_id")[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "recipients" ("id" serial primary key, "name" character varying, "relationship" character varying, "user_id" integer)[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE  INDEX  "index_recipients_on_user_id" ON "recipients" USING btree ("user_id")[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "username" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_7c39244976"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (7.4ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_e0d2452628"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (4.3ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5f98f983da"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5eee704062"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "recipients" ADD CONSTRAINT "fk_rails_037e44a0ef"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20160615213055')[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20160615212716'), ('20160615212807'), ('20160615212940'), ('20160615213022');
+
+[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-06-15 22:44:44 UTC], ["updated_at", 2016-06-15 22:44:44 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE "event_recipients" ("id" serial primary key, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_event_id" ON "event_recipients" USING btree ("event_id")[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_event_recipients_on_recipient_id" ON "event_recipients" USING btree ("recipient_id")[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "date" timestamp, "title" character varying, "description" character varying, "user_id" integer)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events" USING btree ("user_id")[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" serial primary key, "name" character varying, "url" character varying, "price" decimal, "priority" integer, "event_id" integer, "recipient_id" integer)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_event_id" ON "gifts" USING btree ("event_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_gifts_on_recipient_id" ON "gifts" USING btree ("recipient_id")[0m
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE "recipients" ("id" serial primary key, "name" character varying, "relationship" character varying, "user_id" integer)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_recipients_on_user_id" ON "recipients" USING btree ("user_id")[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "username" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[35m (3.6ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_7c39244976"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "event_recipients" ADD CONSTRAINT "fk_rails_e0d2452628"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "events" ADD CONSTRAINT "fk_rails_0cb5590091"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5f98f983da"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "gifts" ADD CONSTRAINT "fk_rails_5eee704062"
+FOREIGN KEY ("recipient_id")
+  REFERENCES "recipients" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "recipients" ADD CONSTRAINT "fk_rails_037e44a0ef"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20160615213055')[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES ('20160615212716'), ('20160615212807'), ('20160615212940'), ('20160615213022');
+
+[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-06-15 22:44:44 UTC], ["updated_at", 2016-06-15 22:44:44 UTC]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" ORDER BY "ar_internal_metadata"."key" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "charliebrown"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "charliebrown"], ["email", "charliebrown@peanuts.com"], ["password_digest", "$2a$10$EKbklbb3Qs3JiE1m3.mk5eSIE6Fj1.LUSVBfHpy1riB9Td.twJeay"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-12-25 00:00:00 UTC], ["title", "Christmas"], ["description", "white, sometimes"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-09-19 00:00:00 UTC], ["title", "Linus' Birthday"], ["description", "big day for Linus"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["date", 2016-06-24 00:00:00 UTC], ["title", "Lucy's Birthday"], ["description", "big day for Lucy"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "recipients" ("name", "relationship") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Linus"], ["relationship", "friend"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "recipients" ("name", "relationship") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Lucy"], ["relationship", "frenemy"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "blanket"], ["url", "http://amzn.to/1OqTnmU"], ["price", #<BigDecimal:7fa3460d2410,'0.2499E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "robot"], ["url", "http://amzn.to/1OqTor7"], ["price", #<BigDecimal:7fa3460c1408,'0.5099E2',18(36)>], ["priority", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bible"], ["url", "http://amzn.to/24Rw2wL"], ["price", #<BigDecimal:7fa343644928,'0.1169E2',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "toy piano"], ["url", "http://amzn.to/24Rwn2x"], ["price", #<BigDecimal:7fa3460f3a48,'0.1495E2',18(36)>], ["priority", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "crab"], ["url", "http://amzn.to/1Q5T15M"], ["price", #<BigDecimal:7fa3436565d8,'0.999E1',18(36)>], ["priority", 4]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "rolling pin"], ["url", "http://amzn.to/1YsF43m"], ["price", #<BigDecimal:7fa34611c948,'0.727E1',18(36)>], ["priority", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "coal"], ["url", "http://amzn.to/21ncI9W"], ["price", #<BigDecimal:7fa34287ba58,'0.1299E2',18(36)>], ["priority", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("name", "url", "price", "priority") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Freud book"], ["url", "http://amzn.to/1tx1Hsi"], ["price", #<BigDecimal:7fa342869f60,'0.784E1',18(36)>], ["priority", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "events" SET "user_id" = $1 WHERE "events"."id" = $2[0m  [["user_id", 1], ["id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "recipients" SET "user_id" = $1 WHERE "recipients"."id" = $2[0m  [["user_id", 1], ["id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "recipients" SET "user_id" = $1 WHERE "recipients"."id" = $2[0m  [["user_id", 1], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 2], ["recipient_id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 1], ["recipient_id", 1]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 3], ["recipient_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "event_recipients" ("event_id", "recipient_id") VALUES ($1, $2) RETURNING "id"[0m  [["event_id", 1], ["recipient_id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "gifts" SET "event_id" = $1, "recipient_id" = $2 WHERE "gifts"."id" = $3[0m  [["event_id", 2], ["recipient_id", 1], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "gifts" SET "event_id" = $1, "recipient_id" = $2 WHERE "gifts"."id" = $3[0m  [["event_id", 2], ["recipient_id", 1], ["id", 2]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "gifts" SET "event_id" = $1, "recipient_id" = $2 WHERE "gifts"."id" = $3[0m  [["event_id", 1], ["recipient_id", 1], ["id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "gifts" SET "recipient_id" = $1 WHERE "gifts"."id" = $2[0m  [["recipient_id", 1], ["id", 4]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "gifts" SET "event_id" = $1, "recipient_id" = $2 WHERE "gifts"."id" = $3[0m  [["event_id", 3], ["recipient_id", 2], ["id", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "gifts" SET "event_id" = $1, "recipient_id" = $2 WHERE "gifts"."id" = $3[0m  [["event_id", 3], ["recipient_id", 2], ["id", 6]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "gifts" SET "event_id" = $1, "recipient_id" = $2 WHERE "gifts"."id" = $3[0m  [["event_id", 1], ["recipient_id", 2], ["id", 7]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "gifts" SET "recipient_id" = $1 WHERE "gifts"."id" = $2[0m  [["recipient_id", 2], ["id", 8]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+Started GET "/api/v1/users/1" for ::1 at 2016-06-15 19:31:11 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mRecipient Load (0.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::JsonApi (85.62ms)
+Completed 200 OK in 135ms (Views: 89.6ms | ActiveRecord: 20.6ms)
+
+
+Started GET "/api/v1/users/1" for ::1 at 2016-06-15 19:31:26 -0400
+Processing by Api::V1::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   [1m[36mRecipient Load (0.5ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::JsonApi (9.58ms)
+Completed 200 OK in 12ms (Views: 9.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-15 19:31:40 -0400
+Processing by Api::V1::EventsController#index as HTML
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (3.8ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (89.62ms)
+Completed 200 OK in 159ms (Views: 140.2ms | ActiveRecord: 18.0ms)
+
+
+user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events/1" for ::1 at 2016-06-15 19:31:47 -0400
+Processing by Api::V1::EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" = $1[0m  [["event_id", 1]]
+[active_model_serializers]   [1m[36mRecipient Load (0.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" INNER JOIN "event_recipients" ON "recipients"."id" = "event_recipients"."recipient_id" WHERE "event_recipients"."event_id" = $1[0m  [["event_id", 1]]
+[active_model_serializers] Rendered EventSerializer with ActiveModelSerializers::Adapter::JsonApi (14.74ms)
+Completed 200 OK in 18ms (Views: 13.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/v1/recipients/1" for ::1 at 2016-06-15 19:32:03 -0400
+Processing by Api::V1::RecipientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipient Load (0.3ms)[0m  [1m[34mSELECT  "recipients".* FROM "recipients" WHERE "recipients"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered RecipientSerializer with ActiveModelSerializers::Adapter::JsonApi (11.7ms)
+Completed 200 OK in 15ms (Views: 10.8ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/v1/gifts/1" for ::1 at 2016-06-15 19:32:21 -0400
+Processing by Api::V1::GiftsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGift Load (0.3ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mRecipient Load (0.4ms)[0m  [1m[34mSELECT  "recipients".* FROM "recipients" WHERE "recipients"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered GiftSerializer with ActiveModelSerializers::Adapter::JsonApi (9.43ms)
+Completed 200 OK in 13ms (Views: 9.3ms | ActiveRecord: 1.2ms)
+
+
