@@ -3,11 +3,11 @@ module Api
     class RecipientsController < ApplicationController
 
       def index
-        render json: Recipient.includes(:gifts, :events), include: ['gifts'], include: ['events']
+        render json: current_user.recipients.includes(:gifts, :events), include: ['gifts'], include: ['events']
       end
 
       def show
-        recipient = Recipient.find(params[:id])
+        recipient = current_user.recipients.find(params[:id])
         render json: recipient
       end
 

@@ -46,3 +46,1089 @@ Unused Eager Loading detected
   EventRecipient => [:recipient]
   Remove from your finder: :includes => [:recipient]
 
+2016-06-16 18:27:06[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:06[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:06[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:06[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:27:06[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:27:08[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:27:08[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:27:15[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:15[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:15[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:15[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:27:15[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:27:16[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:27:16[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:27:57[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:27:57[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:27:59[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:59[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:59[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:27:59[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:27:59[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:28:03[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:28:03[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:28:03[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:28:03[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:28:03[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:28:03[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:28:03[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:28:08[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:28:08[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:28:18[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:28:18[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:28:27[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:28:27[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:32:13[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:32:13[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:32:25[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:32:25[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:32:25[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:32:25[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:32:25[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:32:30[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:32:30[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:32:32[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:32:32[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:32:32[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:32:32[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:32:32[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:32:33[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:32:33[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:33:52[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:33:52[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:33:57[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:33:57[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:34:01[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:34:01[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:34:10[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:34:10[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:35:52[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:35:52[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:36:09[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:36:09[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:38:54[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:38:54[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:39:48[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:39:48[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:40:14[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:40:14[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:40:52[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:40:52[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:41:37[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:41:37[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:41:37[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:41:37[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:41:37[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:42:18[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:42:18[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:42:18[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:42:18[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:42:18[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:43:49[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:43:49[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:43:49[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:43:49[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:43:49[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:43:59[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:43:59[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:43:59[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:43:59[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:43:59[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:44:12[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:44:12[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:44:12[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:44:12[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:44:12[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:47:23[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:47:23[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:47:23[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:47:23[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:47:23[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:49:41[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:49:41[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:49:41[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:49:41[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:49:41[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:49:49[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:49:49[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:49:49[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:49:49[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:49:49[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:51:30[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:51:30[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:51:30[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:51:30[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:51:30[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:53:30[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:53:30[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:53:30[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:53:30[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:53:30[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:53:47[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:53:47[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:53:47[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:53:47[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:53:47[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-16 18:54:43[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:54:43[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-16 18:54:44[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:54:44[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:54:44[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-16 18:54:44[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-16 18:54:44[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-17 12:09:05[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 12:09:05[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 12:09:05[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 12:09:05[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 12:09:05[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-17 14:14:41[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 14:14:41[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-17 15:05:08[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:05:08[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-17 15:06:01[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:06:01[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-17 15:10:13[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 15:10:13[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 15:10:13[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 15:10:13[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:10:13[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-17 15:10:17[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:10:17[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-17 15:10:33[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:user]
+  Add to your finder: :includes => [:user]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 15:10:33[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 15:10:33[WARN] user: info
+/api/v1/recipients
+N+1 Query detected
+  Event => [:recipients]
+  Add to your finder: :includes => [:recipients]
+N+1 Query method call stack
+  /Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'
+
+/Users/info/flatiron/projects/gift_assist/gift_assist_api/app/controllers/api/v1/recipients_controller.rb:6:in `index'2016-06-17 15:10:33[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  Recipient => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:10:33[WARN] user: info
+/api/v1/recipients
+Unused Eager Loading detected
+  EventRecipient => [:event]
+  Remove from your finder: :includes => [:event]
+
+2016-06-17 15:10:35[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:10:35[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+2016-06-17 15:10:49[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:14:23[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+2016-06-17 15:14:36[WARN] user: info
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+

@@ -6,9 +6,9 @@ module Api
         render json: User.includes(:recipients, :events), include: ['recipients'], include: ['events']
       end
 
-      def show
-        user = User.find(params[:id])
-        render json: user
+      def me
+        # user = User.find(params[:id])
+        render json: current_user
       end
 
     end
