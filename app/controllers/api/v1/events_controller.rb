@@ -3,11 +3,11 @@ module Api
     class EventsController < ApplicationController
 
       def index
-        render json: Event.includes(:gifts, :recipients), include: ['gifts'], include: ['recipients']
+        render json: current_user.events.includes(:gifts, :recipients), include: ['gifts'], include: ['recipients']
       end
 
       def show
-        event = Event.find(params[:id])
+        event = current_user.events.find(params[:id])
         render json: event
       end
 
