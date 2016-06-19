@@ -20,7 +20,7 @@ module Api
             gift_array << gift
           end
         end
-      gift_array
+      gift_array.sort_by{|gift| gift.priority}
       end
     end
   end
