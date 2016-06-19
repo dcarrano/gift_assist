@@ -3,7 +3,7 @@ module Api
     class EventsController < ApplicationController
 
       def index
-        render json: current_user.events.order('date').includes(:gifts, :recipients), include: ['gifts'], include: ['recipients']
+        render json: current_user.events.includes(:gifts, :recipients), include: ['gifts'], include: ['recipients']
       end
 
       def show
@@ -19,7 +19,6 @@ module Api
       end
 
       private
-
       def event_params
         params.require(:data).require(:attributes).permit(:title, :description, :date)
       end

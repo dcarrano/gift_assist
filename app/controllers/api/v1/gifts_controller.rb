@@ -7,14 +7,20 @@ module Api
       end
 
       def show
-        gift = user_gifts.find(params[:id])
+        gift = user_gifts.select{|gift| gift.id = params[:id]}[0]
         render json: gift
       end
 
       private
 
       def user_gifts
-        Gift.joins('INNER JOIN events ON gifts.event_id=events.id INNER JOIN users ON events.user_id = users.id').where('users.id = ?', current_user.id).order('gifts.priority')
+        gift_array = []
+        current_user.recipients.each do |recipient|
+          recipient.gifts.each do |gift|
+            gift_array << gift
+          end
+        end
+      gift_array.sort_by{|gift| gift.priority}
       end
     end
   end
