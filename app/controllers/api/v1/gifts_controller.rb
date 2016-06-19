@@ -7,7 +7,7 @@ module Api
       end
 
       def show
-        gift = user_gifts.find(params[:id])
+        gift = user_gifts.select{|gift| gift.id = params[:id]}[0]
         render json: gift
       end
 
