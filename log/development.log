@@ -11575,3 +11575,812 @@ Unused Eager Loading detected
   Remove from your finder: :includes => [:event]
 
 
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:22:14 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (23.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (1.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.9ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (118.83ms)
+Completed 200 OK in 584ms (Views: 359.2ms | ActiveRecord: 56.9ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:23:25 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.7ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.8ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.9ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (57.61ms)
+Completed 200 OK in 137ms (Views: 82.1ms | ActiveRecord: 9.0ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:23:34 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (16.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (1.0ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (108.31ms)
+Completed 200 OK in 259ms (Views: 153.8ms | ActiveRecord: 24.7ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:25:41 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (1.0ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.8ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.8ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (69.94ms)
+Completed 200 OK in 257ms (Views: 85.5ms | ActiveRecord: 9.0ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:25:42 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.8ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.7ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (1.0ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (40.58ms)
+Completed 200 OK in 64ms (Views: 52.2ms | ActiveRecord: 6.7ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:26:07 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.8ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.6ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (1.1ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (6.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (98.34ms)
+Completed 200 OK in 158ms (Views: 114.9ms | ActiveRecord: 13.6ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:27:11 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (1.9ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.7ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (2.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (1.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (81.33ms)
+Completed 200 OK in 204ms (Views: 113.7ms | ActiveRecord: 14.0ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:27:47 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.9ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (1.0ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (70.96ms)
+Completed 200 OK in 146ms (Views: 101.6ms | ActiveRecord: 9.0ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:32:28 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (2.2ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (1.1ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.9ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (3.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (175.46ms)
+Completed 200 OK in 275ms (Views: 222.0ms | ActiveRecord: 13.2ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:32:38 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (2.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (1.9ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.8ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (1.0ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (81.32ms)
+Completed 200 OK in 186ms (Views: 122.8ms | ActiveRecord: 11.1ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:33:33 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.8ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (2.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.9ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (121.33ms)
+Completed 200 OK in 209ms (Views: 151.0ms | ActiveRecord: 10.0ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:33:50 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (1.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.7ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (71.96ms)
+Completed 200 OK in 145ms (Views: 97.1ms | ActiveRecord: 7.9ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:33:54 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (0.5ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.5ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.9ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (76.4ms)
+Completed 200 OK in 132ms (Views: 82.3ms | ActiveRecord: 6.3ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 15:34:18 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (1.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3)[0m
+  [1m[36mEventRecipient Load (1.0ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3)[0m
+  [1m[36mRecipient Load (0.8ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (116.43ms)
+Completed 200 OK in 207ms (Views: 146.5ms | ActiveRecord: 9.1ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started POST "/api/v1/events" for ::1 at 2016-06-19 15:34:34 -0400
+Processing by Api::V1::EventsController#create as JSON
+  Parameters: {"data"=>{"attributes"=>{"title"=>"Best event", "date"=>"2016-06-25T04:00:00.000Z", "description"=>"because it works"}, "relationships"=>{"user"=>{"data"=>nil}, "recipients"=>{"data"=>[]}}, "type"=>"events"}, "event"=>{}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (525.7ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", 2016-06-25 04:00:00 UTC], ["title", "Best event"], ["description", "because it works"], ["user_id", 1]]
+  [1m[35m (1654.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (35.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" = $1[0m  [["event_id", 4]]
+[active_model_serializers]   [1m[36mRecipient Load (0.8ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" INNER JOIN "event_recipients" ON "recipients"."id" = "event_recipients"."recipient_id" WHERE "event_recipients"."event_id" = $1[0m  [["event_id", 4]]
+[active_model_serializers] Rendered EventSerializer with ActiveModelSerializers::Adapter::JsonApi (56.69ms)
+Completed 200 OK in 35149ms (Views: 29.1ms | ActiveRecord: 2219.9ms)
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 16:12:21 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (47.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.9ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3, 4)[0m
+  [1m[36mEventRecipient Load (19.6ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3, 4)[0m
+  [1m[36mRecipient Load (0.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (129.83ms)
+Completed 200 OK in 559ms (Views: 296.4ms | ActiveRecord: 107.0ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/gifts/3" for ::1 at 2016-06-19 16:12:23 -0400
+Started GET "/api/v1/gifts/7" for ::1 at 2016-06-19 16:12:23 -0400
+Processing by Api::V1::GiftsController#show as JSON
+Processing by Api::V1::GiftsController#show as JSON
+  Parameters: {"id"=>"3"}
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRecipient Load (1.8ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mRecipient Load (2.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (2.1ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[36mGift Load (1.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+  [1m[36mGift Load (2.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGift Load (6.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mEvent Load (2.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers] Rendered GiftSerializer with ActiveModelSerializers::Adapter::JsonApi (47.48ms)
+[active_model_serializers]   [1m[36mEvent Load (41.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 119ms (Views: 48.0ms | ActiveRecord: 9.7ms)
+
+
+[active_model_serializers] Rendered GiftSerializer with ActiveModelSerializers::Adapter::JsonApi (46.63ms)
+user: shmuellamm
+/api/v1/gifts/3
+N+1 Query detected
+  Recipient => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:19:in `block in user_gifts'
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:18:in `user_gifts'
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:10:in `show'
+
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:19:in `block in user_gifts'
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:18:in `user_gifts'
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:10:in `show'
+Completed 200 OK in 123ms (Views: 8.2ms | ActiveRecord: 54.2ms)
+
+
+user: shmuellamm
+/api/v1/gifts/3
+N+1 Query detected
+  Gift => [:event]
+  Add to your finder: :includes => [:event]
+N+1 Query method call stack
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:11:in `show'
+
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:11:in `show'
+user: shmuellamm
+/api/v1/gifts/7
+N+1 Query detected
+  Recipient => [:gifts]
+  Add to your finder: :includes => [:gifts]
+N+1 Query method call stack
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:19:in `block in user_gifts'
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:18:in `user_gifts'
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:10:in `show'
+
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:19:in `block in user_gifts'
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:18:in `user_gifts'
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:10:in `show'
+user: shmuellamm
+/api/v1/gifts/7
+N+1 Query detected
+  Gift => [:event]
+  Add to your finder: :includes => [:event]
+N+1 Query method call stack
+  /Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:11:in `show'
+
+/Users/shmuellamm/Development/code/flatiron/gift_assist_folder/gift_assist_rails_api/app/controllers/api/v1/gifts_controller.rb:11:in `show'
+Started GET "/api/v1/events" for ::1 at 2016-06-19 16:12:28 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3, 4)[0m
+  [1m[36mEventRecipient Load (0.5ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3, 4)[0m
+  [1m[36mRecipient Load (0.5ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (51.43ms)
+Completed 200 OK in 66ms (Views: 56.9ms | ActiveRecord: 5.5ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started POST "/api/v1/events" for ::1 at 2016-06-19 16:12:51 -0400
+Processing by Api::V1::EventsController#create as JSON
+  Parameters: {"data"=>{"attributes"=>{"title"=>"Best Event", "date"=>"2016-06-22T04:00:00.000Z", "description"=>"because everything is awesome!"}, "relationships"=>{"user"=>{"data"=>nil}, "recipients"=>{"data"=>[]}}, "type"=>"events"}, "event"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (152.4ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", 2016-06-22 04:00:00 UTC], ["title", "Best Event"], ["description", "because everything is awesome!"], ["user_id", 1]]
+  [1m[35m (1127.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" = $1[0m  [["event_id", 5]]
+[active_model_serializers]   [1m[36mRecipient Load (0.9ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" INNER JOIN "event_recipients" ON "recipients"."id" = "event_recipients"."recipient_id" WHERE "event_recipients"."event_id" = $1[0m  [["event_id", 5]]
+[active_model_serializers] Rendered EventSerializer with ActiveModelSerializers::Adapter::JsonApi (10.99ms)
+Completed 200 OK in 11107ms (Views: 12.1ms | ActiveRecord: 1282.6ms)
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 16:13:57 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[36mEventRecipient Load (0.6ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[36mRecipient Load (0.7ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (2.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (68.35ms)
+Completed 200 OK in 86ms (Views: 75.0ms | ActiveRecord: 7.7ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started GET "/api/v1/events/5" for ::1 at 2016-06-19 16:13:58 -0400
+Processing by Api::V1::EventsController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."user_id" = $1 AND "events"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" = $1[0m  [["event_id", 5]]
+[active_model_serializers]   [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" INNER JOIN "event_recipients" ON "recipients"."id" = "event_recipients"."recipient_id" WHERE "event_recipients"."event_id" = $1[0m  [["event_id", 5]]
+[active_model_serializers] Rendered EventSerializer with ActiveModelSerializers::Adapter::JsonApi (7.26ms)
+Completed 200 OK in 14ms (Views: 8.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 16:14:02 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[36mEventRecipient Load (0.5ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.7ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (59.44ms)
+Completed 200 OK in 77ms (Views: 67.8ms | ActiveRecord: 5.6ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started POST "/api/v1/events" for ::1 at 2016-06-19 16:14:22 -0400
+Processing by Api::V1::EventsController#create as JSON
+  Parameters: {"data"=>{"attributes"=>{"title"=>"hi, Dean!", "date"=>"2016-06-19T04:00:00.000Z", "description"=>"saying hello to Dean"}, "relationships"=>{"user"=>{"data"=>nil}, "recipients"=>{"data"=>[]}}, "type"=>"events"}, "event"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/api/v1/events" for ::1 at 2016-06-19 16:14:32 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[36mEventRecipient Load (0.6ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3, 4, 5)[0m
+  [1m[36mRecipient Load (0.5ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.8ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (60.74ms)
+Completed 200 OK in 77ms (Views: 67.9ms | ActiveRecord: 6.1ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", 2016-06-19 04:00:00 UTC], ["title", "hi, Dean!"], ["description", "saying hello to Dean"], ["user_id", 1]]
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" = $1[0m  [["event_id", 6]]
+[active_model_serializers]   [1m[36mRecipient Load (0.6ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" INNER JOIN "event_recipients" ON "recipients"."id" = "event_recipients"."recipient_id" WHERE "event_recipients"."event_id" = $1[0m  [["event_id", 6]]
+[active_model_serializers] Rendered EventSerializer with ActiveModelSerializers::Adapter::JsonApi (7.27ms)
+Completed 200 OK in 16667ms (Views: 8.0ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/api/v1/events" for ::1 at 2016-06-19 16:15:13 -0400
+Processing by Api::V1::EventsController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mGift Load (0.8ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" IN (1, 2, 3, 4, 5, 6)[0m
+  [1m[36mEventRecipient Load (0.5ms)[0m  [1m[34mSELECT "event_recipients".* FROM "event_recipients" WHERE "event_recipients"."event_id" IN (1, 2, 3, 4, 5, 6)[0m
+  [1m[36mRecipient Load (0.3ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" WHERE "recipients"."id" IN (1, 2)[0m
+[active_model_serializers]   [1m[36mGift Load (0.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 1]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.4ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "event_recipients" ON "events"."id" = "event_recipients"."event_id" WHERE "event_recipients"."recipient_id" = $1[0m  [["recipient_id", 2]]
+[active_model_serializers]   [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (63.81ms)
+Completed 200 OK in 167ms (Views: 117.0ms | ActiveRecord: 29.3ms)
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  Event => [:event_recipients]
+  Remove from your finder: :includes => [:event_recipients]
+
+
+user: shmuellamm
+/api/v1/events
+Unused Eager Loading detected
+  EventRecipient => [:recipient]
+  Remove from your finder: :includes => [:recipient]
+
+
+Started POST "/api/v1/events" for ::1 at 2016-06-19 16:15:50 -0400
+Processing by Api::V1::EventsController#create as JSON
+  Parameters: {"data"=>{"attributes"=>{"title"=>"Dean's Party", "date"=>"2080-06-17T04:00:00.000Z", "description"=>"because of Dean"}, "relationships"=>{"user"=>{"data"=>nil}, "recipients"=>{"data"=>[]}}, "type"=>"events"}, "event"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "events" ("date", "title", "description", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", 2080-06-17 04:00:00 UTC], ["title", "Dean's Party"], ["description", "because of Dean"], ["user_id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGift Load (0.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts" WHERE "gifts"."event_id" = $1[0m  [["event_id", 7]]
+[active_model_serializers]   [1m[36mRecipient Load (1.1ms)[0m  [1m[34mSELECT "recipients".* FROM "recipients" INNER JOIN "event_recipients" ON "recipients"."id" = "event_recipients"."recipient_id" WHERE "event_recipients"."event_id" = $1[0m  [["event_id", 7]]
+[active_model_serializers] Rendered EventSerializer with ActiveModelSerializers::Adapter::JsonApi (16.09ms)
+Completed 200 OK in 27ms (Views: 16.9ms | ActiveRecord: 4.3ms)
+
+

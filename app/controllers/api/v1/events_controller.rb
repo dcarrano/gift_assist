@@ -11,6 +11,17 @@ module Api
         render json: event
       end
 
+      def create
+        event = Event.new(event_params)
+        event.user = current_user
+        event.save
+        render json: event
+      end
+
+      private
+      def event_params
+        params.require(:data).require(:attributes).permit(:title, :description, :date)
+      end
     end
   end
 end
