@@ -5,4 +5,5 @@ class Recipient < ApplicationRecord
   has_many :gifts
 
   validates_presence_of :name
+
 end
