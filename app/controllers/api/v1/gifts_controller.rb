@@ -2,7 +2,7 @@ module Api
   module V1
     class GiftsController < ApplicationController
 
-      before_action :find_gift, only: [:show, :delete]
+      before_action :find_gift, only: [:show, :destroy]
 
       def index
         render json: user_gifts

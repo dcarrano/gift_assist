@@ -2,7 +2,7 @@ module Api
   module V1
     class EventsController < ApplicationController
 
-      before_action :find_event, only: [:show, :delete]
+      before_action :find_event, only: [:show, :destroy]
 
       def index
         render json: current_user.events.order('date').includes(:gifts, :recipients), include: ['gifts'], include: ['recipients']

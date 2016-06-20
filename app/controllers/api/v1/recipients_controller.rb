@@ -2,7 +2,7 @@ module Api
   module V1
     class RecipientsController < ApplicationController
 
-      before_action :find_recipient, only: [:show, :delete]
+      before_action :find_recipient, only: [:show, :destroy]
 
       def index
         render json: current_user.recipients.includes(:gifts, :events), include: ['gifts'], include: ['events']
