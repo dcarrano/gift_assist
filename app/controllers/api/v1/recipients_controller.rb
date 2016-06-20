@@ -13,7 +13,6 @@ module Api
       end
 
       def create
-        binding.pry
         recipient = Recipient.find_by(name: recipient_name[:name])
         if recipient
           recipient.update(recipient_name)
@@ -22,10 +21,6 @@ module Api
           new_recipient.user = current_user
           new_recipient.save
         end
-      end
-
-      def update
-        binding.pry
       end
 
       def destroy

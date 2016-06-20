@@ -23,7 +23,7 @@ module Api
       private
 
       def user_gifts
-        Gift.joins('INNER JOIN events ON gifts.event_id=events.id INNER JOIN users ON events.user_id = users.id').where('users.id = ?', current_user.id).order('gifts.priority')
+        Gift.joins('INNER JOIN recipients ON gifts.recipient_id=recipients.id INNER JOIN users ON recipients.user_id = users.id').where('users.id = ?', current_user.id).order('gifts.priority')
       end
 
       def find_gift
