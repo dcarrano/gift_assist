@@ -1,5 +1,5 @@
 module ErrorSerializer
-​
+  
  def self.serialize(errors)
    return if errors.nil?
    json_error = {"errors": []}
