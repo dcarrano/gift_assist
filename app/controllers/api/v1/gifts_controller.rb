@@ -13,7 +13,12 @@ module Api
       end
 
       def create
-        Gift.create(create_params)
+        gift = Gift.create(gift_params)
+        render json: gift
+      end
+
+      def update
+        Gift.update(gift_params)
       end
 
       def destroy
@@ -30,8 +35,8 @@ module Api
         @gift = user_gifts.find(params[:id])
       end
 
-      def create_params
-        ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:name, :url, :price, :priority])
+      def gift_params
+        ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:name, :url, :price, :priority, :event, :recipient])
       end
     end
   end
